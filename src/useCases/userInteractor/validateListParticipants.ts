@@ -3,22 +3,29 @@ import { UserEntity } from "../../core/entities/user";
 
 export default class ValidateListParticipants
 {
-    constructor (private userRepository:any, private canParticipate:CanParticipate){ }
+    constructor (private canParticipate:CanParticipate){ }
 
     async execute(participants:Array<string>,minAge:number,maxAge:number){
         let listParticipants: Array<UserEntity>= [];
-        let notValidParticipants: Array<UserEntity>= [];
-        participants.forEach(async (id:string)=>{
-            let participant = await this.canParticipate.execute(id,minAge,maxAge);
-            if(participant.status){
-                listParticipants.push(participant.user);             
+        let notValidParticipants: Array<UserEntity>= [];     
+        
+        let participantsObj = await participants.reduce(async(result:any,id:string)=>{
+            let docs = await result;
+            let participant = await this.canParticipate.execute(id,minAge,maxAge);            
+            if(participant.status){                
+                docs.validParticipants = docs.validParticipants || []
+                docs.validParticipants.push(participant.user);             
             }else{
-                notValidParticipants.push(participant.user);
+                docs.notValidParticipants = docs.notValidParticipants || []
+                docs.notValidParticipants.push(participant.user);
             }
-        })    
-        return {
-            validParticipants:listParticipants,
-            notValidParticipants:notValidParticipants
-        }                             
+
+            return docs;
+        },{
+            validParticipants:[],
+            notValidParticipants:[]
+        })
+
+        return await participantsObj;
     }
 }

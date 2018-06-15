@@ -1,4 +1,3 @@
-import { User } from "../../interfaces/entities/user";
 import { UserEntity } from "../../core/entities/user";
 
 export default class CanParticipate
@@ -6,8 +5,10 @@ export default class CanParticipate
     constructor (private userRepository:any){ }
 
     async execute(id:string,minAge:number,maxAge:number){
-        let subject :UserEntity = await this.userRepository.getById(id);        
-        return {
+        let user:any = await this.userRepository.getById(id);    
+        let subject :UserEntity = new UserEntity(user);        
+        
+        return {            
             user:subject,
             status:subject.isCorrectAge(minAge,maxAge)
         };      

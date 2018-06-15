@@ -1,6 +1,4 @@
-import { Router, Request, Response,Express } from "express";
-import {default as User} from '../../repositories/schemas/user';
-import {default as ListUser} from "../../useCases/userInteractor/listUser";
+import { Request, Response,Express } from "express";
 import { ApplicationRoutes } from "./application.routes";
 import { UserController} from '../controllers/user.controller';
 
@@ -12,7 +10,8 @@ export class UsersRoutes extends ApplicationRoutes{
             endPoint:'/user',
             routes:{
                 "/list":"listUsers",
-                "post /save":"createdUser"
+                "post /save":"createdUser",
+                "post /organize":"organizeGame"
             }
         })
 
@@ -27,6 +26,12 @@ export class UsersRoutes extends ApplicationRoutes{
     async createdUser(req:Request,res:Response){
         let body :any = req.body;
         let data = await this.userCtrl.createdUser(body);
+        res.json(data);
+    }
+
+    async organizeGame(req:Request,res:Response){
+        let body :any = req.body;
+        let data = await this.userCtrl.organizeGame(body.participants,body.teams,body.minAge,body.maxAge);
         res.json(data);
     }
 }

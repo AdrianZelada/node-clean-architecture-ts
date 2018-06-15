@@ -1,4 +1,4 @@
-import { Document, Schema, Model, model} from "mongoose";
+import { Document, Model, model} from "mongoose";
 import { User } from "../../interfaces/entities/user";
 import { UserRepository } from "../../interfaces/repositories/user.repository";
 import { UserExtend } from "../extends/user.extend";

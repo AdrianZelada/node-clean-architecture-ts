@@ -1,4 +1,4 @@
-import { Document, Schema, Model, model,SchemaDefinition} from "mongoose";
+import { Schema } from "mongoose";
 
 export class UserExtend extends Schema{
 
@@ -8,6 +8,7 @@ export class UserExtend extends Schema{
         UserExtend.instance = super(data,opt);  
         UserExtend.instance.statics.list=UserExtend.list;
         UserExtend.instance.statics.add=UserExtend.add;
+        UserExtend.instance.statics.getById=UserExtend.getById;
     }
 
     static async list(){
@@ -20,4 +21,8 @@ export class UserExtend extends Schema{
         return await _this.create(user);
     }
 
+    static async getById(id:string){
+        let _this:any=this;        
+        return (await _this.findById(id))._doc;
+    }
 }

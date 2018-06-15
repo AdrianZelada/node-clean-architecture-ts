@@ -8,13 +8,23 @@ export class UserEntity implements User{
     birthday:Date;
     team:string;
 
-    constructor(data:User){
-        Object.assign(this,data);
+    constructor(data:any){        
+
+        let user:any=Object.assign({
+            name:'',
+            lastName:'',
+            email:'',
+            birthday:null,
+            team:''
+        },data);
+
+        Object.assign(this,user)
     }
 
     isCorrectAge(minAge:number,maxAge:number){
         if(this.birthday){
-            let years:number = this.birthday.getFullYear();            
+            let date:Date = new Date();
+            let years:number =date.getFullYear() -this.birthday.getFullYear();                        
             return ((minAge <= years) &&( years <= maxAge))
         }
         return false;        
@@ -22,7 +32,17 @@ export class UserEntity implements User{
 
     sortTeam(teams:Array<any>=[]){
         this.team = teams[this.sortNumber(teams.length)];
-        return this;
+        return this.getUser();
+    }
+
+    getUser(){
+        return {
+            name:this.name,
+            lastName:this.lastName,
+            email:this.email,
+            birthday:this.birthday,
+            team:this.team
+        }
     }
 
     private sortNumber(length:number){

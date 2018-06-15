@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction , Router, Express} from "express";
+import { Response, Router, Express} from "express";
 
 interface ExtendRoutes{          
     endPoint:string,

@@ -1,5 +1,5 @@
 import { default as config} from  "../config/config";
-import { Document, Schema, Model, model, connect} from "mongoose";
+import { connect} from "mongoose";
 
 export namespace DataBase{
     export let connection:any;

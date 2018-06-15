@@ -8,7 +8,7 @@ const config:any  = {
     hostname:`${HOST}:${PORT}/`,
     db: {
         host: `mongodb://${process.env.MONGO_HOST || 'localhost'}/`,        
-        database: 'Notifications',
+        database: 'userGame',
         user: '',
         password: '',
         port: 27017
