@@ -15,7 +15,8 @@ export class UserController extends Singleton{
     
     async listUsers(){
         let list = new ListUser(User);                 
-        let data = await list.execute();        
+        let data = await list.execute(); 
+        console.info('lista usera')       
         return data;        
     }
 

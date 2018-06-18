@@ -20,6 +20,8 @@ export class UsersRoutes extends ApplicationRoutes{
 
     async listUsers(req:Request,res:Response){
         let data = await this.userCtrl.listUsers();
+        console.info('datata')
+        console.info(data)
         res.json(data);
     }
 

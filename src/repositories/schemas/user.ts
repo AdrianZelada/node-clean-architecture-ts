@@ -1,4 +1,4 @@
-import { Document, Model, model} from "mongoose";
+import { Document, Model, model, Schema} from "mongoose";
 import { User } from "../../interfaces/entities/user";
 import { UserRepository } from "../../interfaces/repositories/user.repository";
 import { UserExtend } from "../extends/user.extend";
@@ -9,7 +9,7 @@ export interface IUser extends Document,User,UserRepository {
 
 export interface IUserModel extends Model<IUser> {}
 
-const UserSchema = new UserExtend({  
+  const UserSchema = new Schema({  
     email: {
       type:String,
       index:true
@@ -23,6 +23,7 @@ const UserSchema = new UserExtend({
     }  
   }, { timestamps: true});
 
-
+  
+UserSchema.loadClass(UserExtend)
 let User:IUserModel= model<IUser,IUserModel>("User", UserSchema);
 export default User;

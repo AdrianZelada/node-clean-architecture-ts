@@ -4,6 +4,9 @@ import { Express, Router} from "express";
 import * as express from "express";
 import { default as config} from '../config/config';
 
+import * as coBrow from 'console-serv-brow';
+
+console.log(coBrow)
 export class Middleware{
     app :Express;
     constructor(app : Express){
@@ -12,6 +15,10 @@ export class Middleware{
 
     async execute(){
         await this.port();
+
+        coBrow(this.app,{
+            pathRoute:'/logs',            
+        })
         await this.cors();
         await this.bodyParser();
         await this.statics();        

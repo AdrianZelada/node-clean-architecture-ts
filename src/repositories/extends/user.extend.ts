@@ -1,14 +1,12 @@
 import { Schema } from "mongoose";
 
-export class UserExtend extends Schema{
+// export class UserExtend extends Schema{
+export class UserExtend{
 
     static instance:any;
 
     constructor(data:any,opt:any){
-        UserExtend.instance = super(data,opt);  
-        UserExtend.instance.statics.list=UserExtend.list;
-        UserExtend.instance.statics.add=UserExtend.add;
-        UserExtend.instance.statics.getById=UserExtend.getById;
+                
     }
 
     static async list(){
