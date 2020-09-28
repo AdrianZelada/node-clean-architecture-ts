@@ -16,10 +16,9 @@ export class WebServer {
     }
 
     async start(){
-        this.app = await this.middleware.execute();        
+        this.app = await this.middleware.execute();
         let users =  UsersRoutes.execute(this.app);
-        this.server = createServer(this.app);  
-        
+        this.server = createServer(this.app);
         return await this.server.listen(this.app.get("port"),async()=>{
             console.log(("Running at http://localhost:%d in %s mode"), this.app.get("port"), this.app.get("env"));
         })

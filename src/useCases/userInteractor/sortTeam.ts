@@ -4,16 +4,15 @@ export default class SortTeam
 {
     constructor (){ }
 
-    execute(participants:Array<UserEntity>,teams:Array<any>){  
+    execute(participants:Array<UserEntity>,teams:Array<any>){
         let porcentItem = Math.round(100/participants.length);
         let porcentForTeam = porcentItem*(Math.round(participants.length/teams.length));
         let porcentedTeam = teams.map((team,index)=>{
-            return{                                
+            return{
                 porcent:porcentForTeam
-            }            
-        })    
-
-        let participantsTeam=participants.map((participant:UserEntity)=>{        
+            }
+        });
+        let participantsTeam=participants.map((participant:UserEntity)=>{
             let subject = participant.sortTeam(teams);
             let indexTeam = teams.indexOf(subject.team);
             if(indexTeam != -1){
@@ -24,10 +23,8 @@ export default class SortTeam
                     })
                 }
             }
-            
             return subject;
-        });   
-             
+        });
         return participantsTeam
     }
 }

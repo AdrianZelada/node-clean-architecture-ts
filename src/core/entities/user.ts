@@ -8,7 +8,7 @@ export class UserEntity implements User{
     birthday:Date;
     team:string;
 
-    constructor(data:any){        
+    constructor(data:any){
 
         let user:any=Object.assign({
             name:'',
@@ -24,11 +24,11 @@ export class UserEntity implements User{
     isCorrectAge(minAge:number,maxAge:number){
         if(this.birthday){
             let date:Date = new Date();
-            let years:number =date.getFullYear() -this.birthday.getFullYear();                        
+            let years:number =date.getFullYear() -this.birthday.getFullYear();
             return ((minAge <= years) &&( years <= maxAge))
         }
-        return false;        
-    }    
+        return false;
+    }
 
     sortTeam(teams:Array<any>=[]){
         this.team = teams[this.sortNumber(teams.length)];

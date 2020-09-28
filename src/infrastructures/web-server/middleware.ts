@@ -17,11 +17,11 @@ export class Middleware{
         await this.port();
 
         coBrow(this.app,{
-            pathRoute:'/logs',            
+            pathRoute:'/logs',
         })
         await this.cors();
         await this.bodyParser();
-        await this.statics();        
+        await this.statics();
         return this.app;
     }
 

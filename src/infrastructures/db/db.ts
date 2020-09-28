@@ -9,7 +9,7 @@ export namespace DataBase{
         return connection;
     }
 
-    export async function disconnect(){    
+    export async function disconnect(){
         return await connection.end();;
     }
 

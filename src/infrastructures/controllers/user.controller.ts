@@ -8,16 +8,16 @@ import SortTeam from "../../useCases/userInteractor/sortTeam";
 import OrganizeGame from "../../useCases/userInteractor/organizateGame";
 
 export class UserController extends Singleton{
-    
-    constructor() {        
-        super();        
+
+    constructor() {
+        super();
     }
-    
+
     async listUsers(){
-        let list = new ListUser(User);                 
-        let data = await list.execute(); 
-        console.info('lista usera')       
-        return data;        
+        let list = new ListUser(User);
+        let data = await list.execute();
+        console.info('lista usera')
+        return data;
     }
 
     async createdUser(data:any){
@@ -26,9 +26,8 @@ export class UserController extends Singleton{
     }
 
     async organizeGame(participants:Array<string>,teams:Array<any>,minAge:number=0,maxAge:number=100){
-        
         let sortTeam = new SortTeam();
-        let canParticipate = new CanParticipate(User);   
+        let canParticipate = new CanParticipate(User);
         let validateParticipants = new ValidateListParticipants(canParticipate);
         let organizeGame = new OrganizeGame(validateParticipants,sortTeam);
 

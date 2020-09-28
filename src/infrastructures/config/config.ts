@@ -7,7 +7,7 @@ const config:any  = {
     port: PORT,
     hostname:`${HOST}:${PORT}/`,
     db: {
-        host: `mongodb://${process.env.MONGO_HOST || 'localhost'}/`,        
+        host: `mongodb://${process.env.MONGO_HOST || 'localhost'}/`,
         database: 'userGame',
         user: '',
         password: '',

@@ -2,10 +2,9 @@ import { Request, Response,Express } from "express";
 import { ApplicationRoutes } from "./application.routes";
 import { UserController} from '../controllers/user.controller';
 
-export class UsersRoutes extends ApplicationRoutes{    
+export class UsersRoutes extends ApplicationRoutes{
     userCtrl:any = null;
-    constructor(public app:Express){    
-        
+    constructor(public app:Express){
         super(app,{
             endPoint:'/user',
             routes:{
@@ -13,10 +12,9 @@ export class UsersRoutes extends ApplicationRoutes{
                 "post /save":"createdUser",
                 "post /organize":"organizeGame"
             }
-        })
-
-        this.userCtrl = UserController.getInstance();                    
-    }   
+        });
+        this.userCtrl = UserController.getInstance();
+    }
 
     async listUsers(req:Request,res:Response){
         let data = await this.userCtrl.listUsers();
