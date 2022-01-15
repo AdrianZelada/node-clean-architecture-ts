@@ -21,7 +21,7 @@
     "console-serv-brow": "^1.0.5",
     "express": "^4.16.3",
     "mongoose": "^5.1.5",
-    "shelljs": "^0.8.2"
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "@types/mongoose": "^5.0.15"
